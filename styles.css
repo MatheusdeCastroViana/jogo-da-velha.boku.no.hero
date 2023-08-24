@@ -1,0 +1,27 @@
+*
+body{
+    background-color: #DBFF00;
+}
+
+.jogo-da-velha{
+    position: relative;
+    justify-content: center;
+    padding: 20%;
+}
+
+#linha1{
+    background-color: black;
+    border-radius: 10%;
+    padding-top: 3%;
+    position: relative;
+}
+
+footer{
+    justify-content: center;
+}
+
+#h1{
+    position: relative;
+    justify-items: center;
+   
+}
