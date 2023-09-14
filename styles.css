@@ -3,35 +3,45 @@ body{
     background-color: #DBFF00;
 }
 
-.jogo-da-velha{
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); /* fr = frações de espaço disponível */
-    grid-template-rows: repeat(3, 1fr); /* fr = frações de espaço disponível */
-    gap: 5px; /*espaço entre as linhas*/
-    max-width: 300px; /* largura máxima do tabuleiro */
-    margin: 0 auto; /* estou centralizando o tabuleiro no centro da página */
+/* Estilizei as células da tabela */
+table {
+    border-collapse: collapse;
+    margin: 0 auto;
 }
 
-.celula{
-    width: 100%;
-    padding-top: 100%; /* estou criando células quadradas */
-    background-color: #fff;
-    border: 2px solid #000;
+td {
+    width: 200px;
+    height: 200px;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 24px;
+    font-weight: bold;
+    border: 6px solid #000;
 }
 
-/* estou editando os personagens aqui */
-.celula-content{
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+/* Remova as bordas das células nas pontas */
+tr:first-child td {
+    border-top: none; /* Remova a borda superior da primeira linha */
 }
 
-/* responsividade para celulares */
+tr:last-child td {
+    border-bottom: none; /* Remova a borda inferior da última linha */
+}
+
+td:first-child {
+    border-left: none; /* Remova a borda esquerda da primeira coluna */
+}
+
+td:last-child {
+    border-right: none; /* Remova a borda direita da última coluna */
+}
+
+/* Media query para telas menores */
 @media (max-width: 600px) {
-    .jogo-da-velha{
-        max-width: 90%; /*reduzindo a largura máxima em telas menores */
+    td {
+        width: 50px; /* Reduza o tamanho das células em telas menores */
+        height: 50px;
+        font-size: 16px;
     }
 }
 
