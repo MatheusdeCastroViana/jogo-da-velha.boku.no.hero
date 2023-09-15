@@ -1,6 +1,52 @@
 *
+
 body{
     background-color: #DBFF00;
+}
+
+@import url('https://fonts.cdnfonts.com/css/futura-display');
+
+/* Estilização do menu */
+.menu {
+    background-image: url('background.png');
+    background-size: cover;
+    text-align: center;
+    padding: 15px 0;
+    font-family: 'Futura-Display', sans-serif;
+}
+
+
+/* Estilização dos botões do menu */
+.menu-button {
+    display: inline-block;
+    margin: 10px;
+    padding: 10px 20px;
+    text-decoration: none;
+    color: #fff;
+    background-color: #e61300; /* Vermelho temático */
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Adicione um efeito de transformação suave */
+}
+
+/* Adicione ícones de personagens ao lado dos textos dos botões */
+.menu-button::before {
+    content: "\f2d1"; /* Use códigos Unicode para ícones (exemplo: ícone de personagem) */
+    font-family: 'Font Awesome'; /* Use uma biblioteca de ícones ou fontes de ícones */
+    margin-right: 10px;
+}
+
+/* Quando o mouse está em cima dos botões */
+.menu-button:hover {
+    background-color: #0071cf; /* Azul temático */
+    transform: scale(1.05); /* Efeito de escala ao passar o mouse */
+}
+
+/* Deixando o menu responsivo */
+@media (max-width: 600px) {
+    .menu-button {
+        font-size: 14px; /* Reduza ainda mais o tamanho da fonte em telas menores */
+        padding: 8px 12px; /* Reduza ainda mais o espaçamento interno em telas menores */
+    }
 }
 
 /* Estilizei as células da tabela */
