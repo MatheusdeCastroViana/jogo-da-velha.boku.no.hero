@@ -8,7 +8,7 @@ body{
 
 /* Estilização do menu */
 .menu {
-    background-image: url('background.png');
+    background-image: url('');
     background-size: cover;
     text-align: center;
     padding: 15px 0;
@@ -29,10 +29,12 @@ body{
     transition: background-color 0.3s ease, transform 0.2s ease; /* Efeito de transformação suave */
 }
 
+.menu-button i {
+    margin-right: 8%;
+}
+
 /* Adicione ícones de personagens ao lado dos textos dos botões */
 .menu-button::before {
-    content: "\f2d1"; /* Use códigos Unicode para ícones (exemplo: ícone de personagem) */
-    font-family: 'Font Awesome'; /* Use uma biblioteca de ícones ou fontes de ícones */
     margin-right: 5px;
     font-size: 18px;
 }
@@ -46,8 +48,8 @@ body{
 /* Deixando o menu responsivo */
 @media (max-width: 600px) {
     .menu-button {
-        font-size: 14px; /* Reduza ainda mais o tamanho da fonte em telas menores */
-        padding: 8px 12px; /* Reduza ainda mais o espaçamento interno em telas menores */
+        font-size: 14px; /* tamanho da fonte em telas menores */
+        padding: 8px 12px; /* espaçamento interno em telas menores */
     }
 }
 
@@ -67,7 +69,7 @@ td {
     border: 6px solid #000;
 }
 
-/* Remova as bordas das células nas pontas */
+/* Retirei as bordas das células nas pontas */
 tr:first-child td {
     border-top: none; /* Remova a borda superior da primeira linha */
 }
@@ -87,7 +89,7 @@ td:last-child {
 /* Media query para telas menores */
 @media (max-width: 600px) {
     td {
-        width: 50px; /* Reduza o tamanho das células em telas menores */
+        width: 50px; /* tamanho das células em telas menores */
         height: 50px;
         font-size: 16px;
     }
