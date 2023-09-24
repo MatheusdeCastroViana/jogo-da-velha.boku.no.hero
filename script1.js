@@ -11,4 +11,10 @@ document.addEventListener("DOMContentLoaded", function () {
     closeMenuButton.addEventListener('click', () => {
         menuResponsive.classList.remove('active');
     });
+
+    let pontuacao = 0;
+    pontuacao += 10; //Aumenta a pontuação em 10
+
+    //Atualiza o elemento HTML com a nova pontuação.
+    document.getElementById("pontuacao").textContent = pontuacao;
 });

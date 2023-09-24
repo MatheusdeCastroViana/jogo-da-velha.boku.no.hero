@@ -23,6 +23,39 @@ body{
     cursor: pointer;
 }
 
+.placar {
+    position: absolute;
+    top: 100px; 
+    left: 20px; 
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    display: flex;
+    align-items: center;
+}
+
+/* Estilo para o time azul */
+.time-azul {
+    color: #0071cf; /* Cor azul para o time */
+    margin-right: 20px; /* Espaçamento entre o nome do time e o número */
+}
+
+/* Estilo para o time vermelho */
+.time-vermelho {
+    color: #e61300; /* Cor vermelha para o time */
+    margin-left: 20px; /* Espaçamento entre o nome do time e o número */
+}
+
+/* Estilo para o "vs" no meio */
+.versus {
+    margin: 0 20px; /* Espaçamento entre "vs" e os times */
+}
+
 /* Mostrar o ícone de hambúrguer em telas menores */
 @media (max-width: 600px) {
     .menuHamburguer {
