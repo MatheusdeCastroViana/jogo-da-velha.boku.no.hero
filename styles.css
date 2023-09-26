@@ -1,3 +1,6 @@
+@charset "UTF-8";
+@import url('https://fonts.cdnfonts.com/css/futura-display');
+
 *
 
 body{
@@ -9,9 +12,6 @@ body{
     font-family: 'Futura-Display', sans-serif;
     color: #000;
 }
-
-@import url('https://fonts.cdnfonts.com/css/futura-display');
-
 /* Estilização do ícone de hambúrguer */
 .menuHamburguer {
     display: none; /* Inicialmente oculto em telas maiores */
@@ -37,6 +37,117 @@ body{
     z-index: 999;
     display: flex;
     align-items: center;
+}
+
+.custom-select {
+    position: relative;
+    display: inline-block;
+}
+
+.custom-select select {
+    display: none;
+}
+
+.select-customization {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+}
+
+.selected-option {
+    display: flex;
+    align-items: center;
+}
+
+.selected-option img {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+}
+
+.options {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    display: none;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-top: none;
+    z-index: 1;
+}
+
+.options li {
+    padding: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.options li img {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+}
+
+.custom-select.open .options {
+    display: block;
+}
+
+@media (max-width: 600px) {
+    .responsive-select {
+        width: 100%;
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 600px) {
+
+    .placar {
+        position: absolute;
+        top: 60px;
+        left: 20px;
+        background-color: rgba(0, 0, 0, 0.8);
+        color: #fff;
+        padding: 10px 20px;
+        border-radius: 5px;
+        font-size: 16px;
+        font-weight: bold;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+        z-index: 999;
+        display: flex;
+        align-items: center;
+    }
+
+    .menuHamburguer {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        cursor: pointer;
+        z-index: 1000;
+    }
+
+    table {
+        position: absolute;
+        top: 200px;
+        left: 0%;
+        transform: none;
+        width: 80%; /* Ajuste o valor da largura da tabela */
+        height: 80%; /* Ajuste o valor da altura da tabela */
+    }
+
+    footer {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background-color: rgba(0, 0, 0, 0.8);
+        color: #fff;
+        padding: 10px 0;
+        text-align: center;
+    }
 }
 
 /* Estilo para o time azul */
@@ -221,9 +332,9 @@ table::before {
 /* Células da tabela em tela menores */
 @media (max-width: 600px) {
     td {
-        width: 50px; /* tamanho da célula em telas menores */
-        height: 50px;
-        font-size: 16px;
+        width: 100px; /* tamanho das células em telas menores */
+        height: 100px;
+        font-size: 50px;
     }
 }
 
@@ -257,18 +368,44 @@ td:last-child {
 /* Media query para telas menores */
 @media (max-width: 600px) {
     td {
-        width: 50px; /* tamanho das células em telas menores */
-        height: 50px;
-        font-size: 16px;
+        width: 100px; /* tamanho das células em telas menores */
+        height: 100px;
+        font-size: 50px;
     }
 }
 
-footer{
-    justify-content: center;
+footer {
+    background-color: #e61300; 
+    color: #fff; 
+    padding: 20px 0; /* Espaçamento interno superior e inferior */
+    text-align: center; /* conteúdo do footer */
+    font-size: 14px; 
+    font-weight: bold; /* Texto em negrito */
 }
 
-#h1{
-    position: relative;
-    justify-items: center;
-   
+/* Estilo para o conteúdo do footer */
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 100%; 
+    margin: 0 auto; /* Centraliza o conteúdo horizontalmente */
+    padding: 0 20px; /* Espaçamento interno nas laterais */
 }
+
+/* Estilo para o link de direitos autorais */
+.footer-content p:last-child {
+    font-size: 12px; /* Tamanho da fonte menor para o link de direitos autorais */
+}
+
+@media (max-width: 768px) {
+    .footer-content {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .footer-content p {
+        margin: 10px 0;
+    }
+}
+
