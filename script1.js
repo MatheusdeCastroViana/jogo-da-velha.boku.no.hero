@@ -1,10 +1,32 @@
 document.addEventListener("DOMContentLoaded", function () {
     const menuHamburguer = document.querySelector('.menuHamburguer');
     const menuResponsive = document.querySelector('.menuResponsive');
-    const menuPersonagem = document.getElementById('personagem');
-    const selectedPersonagemImg = document.getElementById('selected-personagem-img');
-    const selectedPersonagemText = document.getElementById('selected-personagem-text');
+    const customSelect = document.getElementById('personagem');
+    const options = customSelect.querySelectorAll('.options li');
+    const personagens = document.querySelectorAll('.personagem');
+    const viloes = document.querySelectorAll('.vilao');
+    const pontuacaoElement = document.getElementById('placar-time-azul');
     let pontuacao = 0;
+
+    options.forEach(option => {
+        option.addEventListener('click', function () {
+            const value = this.getAttribute('data-value');
+            const imgSrc = this.querySelector('img').getAttribute('src');
+
+            selectedPersonagemImg.src = imgSrc;
+            selectedPersonagemText.textContent = value;
+            customSelect.classList.remove('open');
+
+            // Exibir ou ocultar heróis e vilões conforme a seleção
+            if (value === 'Heróis') {
+                personagens.forEach(personagem => personagem.style.display = 'block');
+                viloes.forEach(vilao => vilao.style.display = 'none');
+            } else if (value === 'Vilões') {
+                personagens.forEach(personagem => personagem.style.display = 'none');
+                viloes.forEach(vilao => vilao.style.display = 'block');
+            }
+        });
+    });
 
     menuHamburguer.addEventListener('click', () => {
         menuResponsive.classList.toggle('active');
@@ -16,30 +38,23 @@ document.addEventListener("DOMContentLoaded", function () {
         menuResponsive.classList.remove('active');
     });
 
-    // Atualiza a imagem e o texto do personagem selecionado
-    menuPersonagem.addEventListener('change', function () {
-        const personagemSelecionado = menuPersonagem.value;
-        const personagemOption = menuPersonagem.querySelector(`[value="${personagemSelecionado}"]`);
-        const personagemImgSrc = personagemOption.querySelector('img').getAttribute('src');
-        const personagemNome = personagemOption.textContent;
+    options.forEach(option => {
+        option.addEventListener('click', function () {
+            const value = this.getAttribute('data-value');
+            const imgSrc = this.getAttribute('data-img');
 
-        selectedPersonagemImg.src = personagemImgSrc;
-        selectedPersonagemText.textContent = personagemNome;
-
-        // Lógica para alterar a pontuação quando um personagem é selecionado
-        if (personagemSelecionado === "personagem1") {
-            pontuacao += 10; // Exemplo de aumento de pontuação para Midoriya
-        } else if (personagemSelecionado === "personagem2") {
-            pontuacao += 15; // Exemplo de aumento de pontuação para Bakugo
-        } else {
-            pontuacao += 5; // Pontuação padrão para outros personagens
-        }
-
-        // Atualiza o elemento HTML com a nova pontuação.
-        pontuacaoElement.textContent = pontuacao;
+            selectedPersonagemImg.src = imgSrc;
+            selectedPersonagemText.textContent = value;
+            customSelect.classList.remove('open');
+        });
     });
 
-    // Inicialmente, defina a pontuação inicial
-    const pontuacaoElement = document.getElementById('pontuacao');
-    pontuacaoElement.textContent = pontuacao;
+    customSelect.addEventListener('click', function () {
+        // Alternar a abertura e o fechamento do menu de opções
+        this.classList.toggle('open');
+    });
+
+    const scriptLoadedMarker = document.createElement('div');
+    scriptLoadedMarker.id = 'script1-loaded';
+    document.body.appendChild(scriptLoadedMarker);
 });

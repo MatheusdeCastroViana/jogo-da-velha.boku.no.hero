@@ -43,23 +43,48 @@
         <span class="time-vermelho">Liga dos Vilões: <span id="placar-time-vermelho">0</span></span>
     </div>
 
-    <div class="personagem-menu">
-        <select id="personagem" name="personagem" class="responsive-select">
-            <optgroup label="U.A. - Heróis">
-                <option value="personagem1" data-img="images/midorya.png">Midoriya</option>
-                <option value="personagem2" data-img="images/bakugo.png">Bakugo</option>
-                <option value="personagem3" data-img="images/todoroki.png">Todoroki</option>
-                <option value="personagem4" data-img="images/kirishima.png">Kirishima</option>
-            </optgroup>
-            <optgroup label="Liga dos Vilões">
-                <option value="vilao1" data-img="images/shigaraki.png">Shigaraki</option>
-                <option value="vilao2" data-img="images/kurogiri.png">Kurogiri</option>
-                <option value="vilao3" data-img="images/himiko.png">Himiko</option>
-                <option value="vilao4" data-img="images/dabi.png">Dabi</option>
-            </optgroup>
-        </select>
+    <div class="custom-select" id="personagem">
+        <div class="select-customization">
+            <div class="selected-option" id="selected-personagem">
+                <span id="selected-personagem-text">Escolha um Personagem</span>
+            </div>
+            <ul class="options">
+                <li data-value="Heróis">
+                    <img src="images/midorya.png" alt="Midoriya">
+                    <span>Midoriya</span>
+                </li>
+                <li data-value="Heróis">
+                    <img src="images/bakugo.png" alt="Bakugo">
+                    <span>Bakugo</span>
+                </li>
+                <li data-value="Heróis">
+                    <img src="images/todoroki.png" alt="Todoroki">
+                    <span>Todoroki</span>
+                </li>
+                <li data-value="Heróis">
+                    <img src="images/kirishima.png" alt="Kirishima">
+                    <span>Kirishima</span>
+                </li>
+                <li data-value="Vilões">
+                    <img src="images/shigaraki.png" alt="Shigaraki">
+                    <span>Shigaraki</span>
+                </li>
+                <li data-value="Vilões">
+                    <img src="images/kurogiri.png" alt="Kurogiri">
+                    <span>Kurogiri</span>
+                </li>
+                <li data-value="Vilões">
+                    <img src="images/himiko.png" alt="Himiko">
+                    <span>Himiko</span>
+                </li>
+                <li data-value="Vilões">
+                    <img src="images/dabi.png" alt="Dabi">
+                    <span>Dabi</span>
+                </li>
+            </ul>
+        </div>
     </div>
-    
+            
    <!-- Tabuleiro do jogo da velha -->
    <table>
     <tr>

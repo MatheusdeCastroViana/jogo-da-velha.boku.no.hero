@@ -167,6 +167,94 @@ body{
     margin: 0 20px; /* Espaçamento entre "vs" e os times */
 }
 
+/* estilos para o menu de seleção de personagens */
+.custom-select {
+    margin-top: 20px;
+    position: relative;
+}
+
+.select-customization {
+    border: 2px solid #fff; /* borda branca ao redor do menu */
+    border-radius: 5px; /* Cantos arredondados */
+    overflow: hidden; /* Esconde as opções fora do contêiner */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adiciona uma leve sombra */
+}
+
+.selected-option {
+    background-color: #e61300; /* Cor de destaque para a opção selecionada */
+    color: #fff;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.options {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    display: none;
+    background-color: #fff;
+    border: 2px solid #fff;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+    overflow-y: auto; /* Adiciona rolagem para o caso de muitas opções */
+}
+
+.options li {
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    transition: background-color 0.3s ease;
+}
+
+.options li:hover {
+    background-color: #e61300; /* Cor de destaque ao passar o mouse */
+    color: #fff;
+}
+
+.options li img {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+    border-radius: 50%;
+}
+
+.custom-select.open .options {
+    display: block;
+}
+
+/* estilos para a seta ao lado da opção selecionada */
+.select-customization::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 8px 6px 0;
+    border-color: #fff transparent transparent transparent;
+}
+
+/* estilos para o texto da opção selecionada */
+#selected-personagem-text {
+    flex-grow: 1; /* Ocupa todo o espaço disponível */
+    margin: 0.01%;
+}
+
+@media (max-width: 600px) {
+    .custom-select {
+        width: 100%; /* Ajusta a largura para telas menores */
+    }
+}
+
 /* Mostrar o ícone de hambúrguer em telas menores */
 @media (max-width: 600px) {
     .menuHamburguer {
