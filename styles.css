@@ -96,10 +96,134 @@ body{
     display: block;
 }
 
+.select-customization {
+    min-width: 200px; /* Define uma largura mínima para evitar a compressão excessiva em telas menores */
+}
+
+.selected-option img {
+    width: 20px; /* Reduz o tamanho da imagem em telas menores */
+    height: 20px;
+    margin-right: 8px;
+}
+
+.options li img {
+    width: 20px; /* Reduz o tamanho da imagem das opções em telas menores */
+    height: 20px;
+    margin-right: 8px;
+}
+
+/* Adapta os estilos para telas menores */
+@media (max-width: 600px) {
+    .select-customization {
+        min-width: 100%; /* Usa toda a largura disponível em telas menores */
+    }
+
+    .selected-option img {
+        width: 16px; /* Reduz ainda mais o tamanho da imagem em telas muito pequenas */
+        height: 16px;
+        margin-right: 6px;
+    }
+
+    .options li img {
+        width: 16px; /* Reduz ainda mais o tamanho da imagem das opções em telas muito pequenas */
+        height: 16px;
+        margin-right: 6px;
+    }
+}
+
 @media (max-width: 600px) {
     .responsive-select {
         width: 100%;
         font-size: 16px;
+    }
+}
+
+@media (max-width: 600px) {
+    .custom-select {
+        margin-top: 10px;
+        position: relative;
+        width: 80%; /* Ajusta a largura para ocupar 80% da largura disponível */
+        margin-left: 10%; /* Centraliza horizontalmente */
+    }
+
+    .select-customization {
+        border: 2px solid #fff;
+        border-radius: 5px;
+        overflow: hidden;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: #e61300;
+    }
+
+    .selected-option {
+        background-color: #e61300;
+        color: #fff;
+        padding: 10px;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        width: 100%;
+    }
+
+    .options {
+        width: 100%;
+    }
+
+    .options li {
+        padding: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        transition: background-color 0.3s ease;
+    }
+
+    .options li img {
+        width: 20px;
+        height: 20px;
+        margin-right: 8px;
+        border-radius: 50%;
+    }
+
+    .custom-select.open .options {
+        display: block;
+    }
+
+    .select-customization::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        right: 10px;
+        transform: translateY(-50%);
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 8px 6px 0;
+        border-color: #fff transparent transparent transparent;
+    }
+
+    #selected-personagem-text {
+        flex-grow: 1;
+        margin: 0.01%;
+    }
+}
+
+@media (max-width: 600px) {
+    .placar {
+        top: 60px; /* Ajusta a posição superior do placar em telas menores */
+        left: 20px; /* Mantém o placar no canto esquerdo */
+    }
+
+    .custom-select {
+        margin-top: 10px; /* Reduz o espaçamento superior do menu de seleção de personagens */
+        position: absolute;
+        top: 20px;
+        left: 20px; /* Move o menu para o canto esquerdo */
+    }
+
+    table {
+        top: 120px; /* Ajusta a posição superior da tabela em telas menores */
     }
 }
 
