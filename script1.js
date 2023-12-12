@@ -1,61 +1,38 @@
 document.addEventListener("DOMContentLoaded", function () {
-    // Seletor do menu hamburguer
     const menuHamburguer = document.querySelector('.menuHamburguer');
-    // Seletor do menu responsivo
     const menuResponsive = document.querySelector('.menuResponsive');
-    // Seletor do menu de seleção de personagens
     const customSelect = document.getElementById('personagem');
-    // Opções do menu de seleção de personagens
     const options = customSelect.querySelectorAll('.options li');
-    // Elementos dos personagens e vilões
-    const personagens = document.querySelectorAll('.personagem');
-    const viloes = document.querySelectorAll('.vilao');
+    const selectedPersonagemImg = document.getElementById('selectedPersonagemImg');
+    const selectedPersonagemText = document.getElementById('selectedPersonagemText');
 
-    // Pontuação do time azul
-    const pontuacaoElement = document.getElementById('placar-time-azul');
-    let pontuacao = 0;
-
-    // Evento de clique para cada opção do menu de seleção de personagens
-    options.forEach(option => {
-        option.addEventListener('click', handleCharacterSelection);
-    });
-
-    // Evento de clique para o menu hamburguer
-    menuHamburguer.addEventListener('click', toggleResponsiveMenu);
-
-    // Fechar o menu responsivo
-    const closeMenuButton = document.getElementById('closeMenu');
-    closeMenuButton.addEventListener('click', closeResponsiveMenu);
-
-    // Evento de clique para o menu de seleção de personagens
-    customSelect.addEventListener('click', toggleCharacterMenu);
-
-    // Marcador para o script carregado
-    const scriptLoadedMarker = document.createElement('div');
-    scriptLoadedMarker.id = 'script1-loaded';
-    document.body.appendChild(scriptLoadedMarker);
-
-    // Elementos do tabuleiro do jogo
     const cells = document.querySelectorAll('#game-board td');
-    // Botão de reiniciar o jogo
     const resetButton = document.getElementById('reset-button');
-    // Elementos do placar
     const placarTimeAzul = document.getElementById('placar-time-azul');
     const placarTimeVermelho = document.getElementById('placar-time-vermelho');
 
     let currentPlayer = 'X';
     let gameActive = true;
     let moves = 0;
+    let playerStartsNextRound = true;
 
-    // Adicionar evento de clique para cada célula do tabuleiro
+    options.forEach(option => {
+        option.addEventListener('click', handleCharacterSelection);
+    });
+
+    menuHamburguer.addEventListener('click', toggleResponsiveMenu);
+
+    const closeMenuButton = document.getElementById('closeMenu');
+    closeMenuButton.addEventListener('click', closeResponsiveMenu);
+
+    customSelect.addEventListener('click', toggleCharacterMenu);
+
     cells.forEach(cell => {
         cell.addEventListener('click', handleCellClick);
     });
 
-    // Adicionar evento de clique para o botão de reiniciar o jogo
     resetButton.addEventListener('click', resetGame);
 
-    // Função para lidar com a seleção de personagens
     function handleCharacterSelection() {
         const value = this.getAttribute('data-value');
         const imgSrc = this.querySelector('img').getAttribute('src');
@@ -64,7 +41,6 @@ document.addEventListener("DOMContentLoaded", function () {
         selectedPersonagemText.textContent = value;
         customSelect.classList.remove('open');
 
-        // Exibir ou ocultar heróis e vilões conforme a seleção
         if (value === 'Heróis') {
             personagens.forEach(personagem => personagem.style.display = 'block');
             viloes.forEach(vilao => vilao.style.display = 'none');
@@ -74,13 +50,13 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    // Função para lidar com o clique no tabuleiro
     function handleCellClick() {
         if (this.textContent || !gameActive) {
             return;
         }
 
         this.textContent = currentPlayer;
+        moves++;
 
         if (checkWin()) {
             updatePlacar();
@@ -88,7 +64,6 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
-        moves++;
         if (moves === 9) {
             resetGame();
             return;
@@ -101,7 +76,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    // Função para verificar se há uma vitória
     function checkWin() {
         const winningCombinations = [
             [0, 1, 2], [3, 4, 5], [6, 7, 8],
@@ -109,13 +83,18 @@ document.addEventListener("DOMContentLoaded", function () {
             [0, 4, 8], [2, 4, 6]
         ];
 
-        return winningCombinations.some(combination => {
+        const result = winningCombinations.some(combination => {
             const [a, b, c] = combination;
             return cells[a].textContent && cells[a].textContent === cells[b].textContent && cells[a].textContent === cells[c].textContent;
         });
+
+        if (result || moves === 9) {
+            clearBoard();
+        }
+
+        return result;
     }
 
-    // Função para atualizar o placar
     function updatePlacar() {
         if (currentPlayer === 'X') {
             placarTimeAzul.textContent = parseInt(placarTimeAzul.textContent) + 1;
@@ -124,56 +103,77 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    // Função para reiniciar o jogo
     function resetGame() {
+        clearBoard();
+        currentPlayer = playerStartsNextRound ? 'X' : 'O';
+        gameActive = true;
+        moves = 0;
+    
+        // Inicie a jogada do bot apenas se o jogador não começar
+        if (currentPlayer === 'O') {
+            makeComputerMove();
+        }
+    }
+
+    function makeComputerMove() {
+        if (!gameActive) {
+            return;
+        }
+
+        // Lógica simples para a jogada do computador
+        const emptyCells = Array.from(cells).filter(cell => !cell.textContent);
+        const randomIndex = Math.floor(Math.random() * emptyCells.length);
+        const chosenCell = emptyCells[randomIndex];
+        chosenCell.textContent = 'O';
+
+        if (checkWin()) {
+            updatePlacar();
+            gameActive = false;
+            return;
+        }
+
+        currentPlayer = 'X';
+    }
+
+    function clearBoard() {
         cells.forEach(cell => {
             cell.textContent = '';
         });
-
-        currentPlayer = 'X';
-        gameActive = true;
-        moves = 0;
-    }
-
-    // Função para fazer a jogada do computador
-    function makeComputerMove() {
-        const emptyCells = Array.from(cells).filter(cell => !cell.textContent);
-        if (emptyCells.length > 0) {
-            const randomIndex = Math.floor(Math.random() * emptyCells.length);
-            const randomCell = emptyCells[randomIndex];
-            randomCell.textContent = 'O';
-
-            if (checkWin()) {
-                updatePlacar();
-                resetGame();
-                return;
-            }
-
-            moves++;
-            if (moves === 9) {
-                resetGame();
-                return;
-            }
-
-            currentPlayer = 'X';
-        }
     }
 });
 
-// Função para alternar o menu responsivo
 function toggleResponsiveMenu() {
     const menuResponsive = document.querySelector('.menuResponsive');
     menuResponsive.classList.toggle('active');
 }
 
-// Função para fechar o menu responsivo
 function closeResponsiveMenu() {
     const menuResponsive = document.querySelector('.menuResponsive');
     menuResponsive.classList.remove('active');
 }
 
-// Função para alternar o menu de seleção de personagens
 function toggleCharacterMenu() {
     const customSelect = document.getElementById('personagem');
     customSelect.classList.toggle('open');
 }
+
+document.addEventListener("DOMContentLoaded", function () {
+    // ... (seu código existente)
+
+    const gameModeSelect = document.getElementById('gameMode');
+    const gameModeOptions = gameModeSelect.querySelectorAll('.options li');
+    const selectedGameModeText = document.getElementById('selected-game-mode-text');
+
+    gameModeOptions.forEach(option => {
+        option.addEventListener('click', handleGameModeSelection);
+    });
+
+    function handleGameModeSelection() {
+        const value = this.getAttribute('data-value');
+        selectedGameModeText.textContent = value;
+        gameModeSelect.classList.remove('open');
+
+        // Aqui você pode adicionar lógica adicional com base no modo de jogo selecionado, se necessário
+    }
+});
+
